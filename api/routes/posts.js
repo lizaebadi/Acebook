@@ -22,9 +22,6 @@ const upload = multer({storage});
 router.get("/", PostsController.Index);
 router.post("/", PostsController.Create);
 router.post("/like", PostsController.addLike);
-
-
-
 router.post("/", upload.single("image"), PostsController.Create);
 
 module.exports = router;

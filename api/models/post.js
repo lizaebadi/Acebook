@@ -7,7 +7,6 @@ const PostSchema = new mongoose.Schema({
     default: () => Date.now()
   },
   likes: {type: Number, min: 0, default: 0},
-  message: { type: String, required: false },
   photoUrl: { type: String, required: false }
 });
 
