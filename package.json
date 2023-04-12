@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "react-animated-heart": "^0.0.7",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "axios": "^1.3.5"
   }
 }
