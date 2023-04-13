@@ -7,8 +7,8 @@ const PostsController = require("../controllers/posts");
 
 // set up multer storage engine
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../public/uploaded_photos"));
+  destination: (req, file, cb) => {  
+    cb(null, path.join(__dirname, "../../frontend/public/uploaded_photos"));
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname));
@@ -16,7 +16,8 @@ const storage = multer.diskStorage({
 });
 
 // create multer instance
-const upload = multer({ storage: storage });
+const upload = multer({storage});
+
 
 router.get("/", PostsController.Index);
 router.post("/", PostsController.Create);

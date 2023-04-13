@@ -18,9 +18,9 @@ const CreatePostForm = ({ navigate }) => {
       formData.append('message', message);
       formData.append('image', image);
 
-      Axios.post('http://localhost:3000/createpost', formData, {
+      Axios.post('http://localhost:3000/posts', formData, { 
         headers: {
-          Authorization: `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'          
         },
       })
@@ -42,13 +42,12 @@ const CreatePostForm = ({ navigate }) => {
 
   const handlePhoto = (event) => {
     setImage(event.target.files[0]);
-    // console.log(image)
   }
 
   return (
     <form onSubmit={handleSubmit} encType='multipart/form-data'>
       <input placeholder="Message" id="message" type='text' value={ message } onChange={handleMessageChange} />
-      <input id="image" accept= ".png, .jpg, .jpeg" type='file' onChange={handlePhoto} />
+      <input id="image" name="image" accept= ".png, .jpg, .jpeg" type='file' onChange={handlePhoto} />
       <input id='submit' type="submit" value="Submit" />
     </form>
   );

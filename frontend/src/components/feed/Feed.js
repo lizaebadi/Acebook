@@ -27,7 +27,7 @@ const Feed = ({ navigate }) => {
     navigate('/login')
   }
 
-  const createpost = () => {
+  async function createpost() {
     navigate('/createpost')
   }
 
