@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import Axios from 'axios';
 
 const CreatePostForm = ({ navigate }) => {
 
@@ -18,7 +18,7 @@ const CreatePostForm = ({ navigate }) => {
       formData.append('message', message);
       formData.append('image', image);
 
-      axios.post('http://localhost:3000/posts', formData, {
+      Axios.post('http://localhost:3000/createpost', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'          
