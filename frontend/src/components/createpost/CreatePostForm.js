@@ -4,46 +4,34 @@ import axios from 'axios';
 const CreatePostForm = ({ navigate }) => {
 
   const [message, setMessage] = useState("");
-  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [token] = useState(window.localStorage.getItem("token"));
   const [image, setImage] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // added another IF here because I am getting a 401 error (missing token)
+    //console.log("message:", message);
+    //console.log("image:", image);
+
     if(token) {
       const formData = new FormData();
-      formData.append('photo', image);
+      formData.append('message', message);
+      formData.append('image', image);
 
-      axios.post('http://localhost:3000/posts', formData)
+      axios.post('http://localhost:3000/posts', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'          
+        },
+      })
         .then(res => {
           console.log(res);
+          //console.log("This is the form data - ", formData);
+          navigate('/posts')
         })
         .catch(err => {
           console.log(err);
         });
-    }
-
-    if(token) {
-      let response = await fetch( '/posts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ message: message })
-      })
-
-      if(response.status !== 201) {
-        console.log("oops")
-        navigate('/posts')
-      } else {
-        console.log("yay")
-        let data = await response.json()
-        window.localStorage.setItem("token", data.token)
-        setToken(window.localStorage.getItem("token"))
-        navigate('/posts'); // new post functionality to post here.
-      }
     }
   }
 
@@ -59,7 +47,7 @@ const CreatePostForm = ({ navigate }) => {
   return (
     <form onSubmit={handleSubmit} encType='multipart/form-data'>
       <input placeholder="Message" id="message" type='text' value={ message } onChange={handleMessageChange} />
-      <input id="photo" accept= ".png, .jpg, .jpeg" type='file' onChange={handlePhoto} />
+      <input id="image" accept= ".png, .jpg, .jpeg" type='file' onChange={handlePhoto} />
       <input id='submit' type="submit" value="Submit" />
     </form>
   );
