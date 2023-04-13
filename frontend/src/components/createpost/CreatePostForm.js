@@ -10,8 +10,8 @@ const CreatePostForm = ({ navigate }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //console.log("message:", message);
-    //console.log("image:", image);
+    console.log("message:", message);
+    console.log("image:", image);
 
     if(token) {
       const formData = new FormData();
@@ -26,7 +26,8 @@ const CreatePostForm = ({ navigate }) => {
       })
         .then(res => {
           console.log(res);
-          //console.log("This is the form data - ", formData);
+          console.log("This is the form data - ", formData);
+          console.log(image)
           navigate('/posts')
         })
         .catch(err => {
@@ -41,7 +42,7 @@ const CreatePostForm = ({ navigate }) => {
 
   const handlePhoto = (event) => {
     setImage(event.target.files[0]);
-    console.log(image)
+    // console.log(image)
   }
 
   return (
