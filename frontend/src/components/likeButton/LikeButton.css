@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+@keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+  
+    50% {
+      transform: scale(1.25);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .like-button{
+    color: black;
+    opacity: 0.3;
+    cursor: pointer;
+    width: 20px;
+    height: 18px;
+  }
+
+  .like-button:hover {
+    animation: heartbeat 1s infinite;
+    fill: red;
+    color: red;
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+
+ .like{
+    padding-left: 5px;
+    margin-bottom: 10px;
+    font-family: 'Fira Sans', sans-serif;
+ }
+
+ .like-button-container {
+    background-color: var(--background-color);
+    color: #222;
+    padding: .5em 1em;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+  
+    --background-color:#E3E3E3;
+    --border-size: 2px;
+    --accent-color: rgb(255, 64, 0);
+  }
+
+.like-button-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--border-size);
+    background-color: var(--accent-color);
+    transition: transform 300ms ease-in-out;
+    transform: scaleX(0);
+}
+
+.like-button-container:hover::before,
+.like-button-container:focus::before {
+  transform: scaleX(1);
+}
