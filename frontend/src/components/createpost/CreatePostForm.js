@@ -26,8 +26,8 @@ const CreatePostForm = ({ navigate }) => {
       })
         .then(res => {
           console.log(res);
-          console.log("This is the form data - ", formData);
-          console.log(image)
+          //console.log("This is the form data - ", formData);
+          //console.log(image)
           navigate('/posts')
         })
         .catch(err => {
