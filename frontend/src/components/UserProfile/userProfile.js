@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Post from '../post/Post';
-import UserDetails from '../userDetails/userDetails';
+import RecentPosts from '../RecentPosts/RecentPosts';
+import UserInfo from '../UserInfo/UserInfo';
+import './UserProfile.css';
 
-const UserProfile = () => {
+const UserProfile = ({ navigate }) => {
   const [user, setUser] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [posts, setPosts] = useState([]);
@@ -17,7 +18,7 @@ const UserProfile = () => {
       })
       .then(response => response.json())
       .then(data => {
-        setUser(data);
+        setUser(data);  
         console.log(user);
       })
     }
@@ -37,26 +38,58 @@ const UserProfile = () => {
     }
   }, [token]);
 
-  return (
-    <div className='profile-container'>
-      <h1>Profile Page</h1>
-      <div className='user-info'>
-        <h2>Email Address</h2>
-        <p> {user.email} </p>
-        <h2>Name</h2>
-        <p> {user.name} </p>
-        <img src={user.avatar} />
+  const handleSubmit = (e, name, email, avatar) => {
+    e.preventDefault();
+
+    fetch('/users/update', {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        avatarUrl: avatar
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      if (data.message === 'OK') {
+        setUser({
+          ...user,
+          name: name,
+          email: email,
+          avatar: avatar
+        })
+      }
+    })
+    e.target.reset();
+    fetch('/users/profile', {
+      method: 'get',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      setUser(data);
+      console.log(user);
+    })
+  }
+
+  if(token) {
+    return (
+      <div className='profile-container'>
+        <h1>Profile Page</h1>
+        <UserInfo user={user} handleSubmit={handleSubmit} />
+        <RecentPosts posts={posts} />
       </div>
-      <div className='own-posts'>
-        <h1>Recent Posts</h1>
-        <div id='feed' role="feed">
-          {posts?.sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-          .slice(0,5)
-          .map((post) => (<Post post={post} key={post._id} />))}
-        </div>
-      </div>
-    </div>
-  );
+    )
+  } else {
+    navigate('/login')
+  }
 };
 
 export default UserProfile;

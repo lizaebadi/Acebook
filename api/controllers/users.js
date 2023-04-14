@@ -30,6 +30,23 @@ const UsersController = {
         res.status(404).json({ message: 'User not found' });
       } else {
         res.status(200).json({ 
+          userId: user.user_id,
+          name: user.name,
+          email: user.email, 
+          avatar: user.avatarUrl});
+      }
+    });
+  },
+  Update: (req, res) => {
+    User.findOneAndUpdate({ user_id: req.body.user_id }, req.body, { new: true }, (err, user) => {
+      if (err) {
+        res.status(500).json({ message: 'Internal Server Error' });
+      }
+      if (!user) {
+        res.status(404).json({ message: 'User not found' });
+      } else {
+        res.status(200).json({
+          userId: user.user_id,
           name: user.name,
           email: user.email, 
           avatar: user.avatarUrl});
