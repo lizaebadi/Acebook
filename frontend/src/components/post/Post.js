@@ -2,7 +2,6 @@ import React from "react";
 import LikeButton from "../likeButton/LikeButton";
 import './Post.css';
 
-<<<<<<< HEAD
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
@@ -23,14 +22,5 @@ const Post = ({ post }) => {
     </article>
   );
 };
-=======
-const Post = ({post}) => {
-  return(
-    <article data-cy="post" key={ post._id }>{ post.message } { post.dateCreated }</article>
-  )
-}
->>>>>>> 5c74c57 (add test for createdDateworking)
 
 export default Post;
-
-

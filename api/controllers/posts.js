@@ -32,7 +32,6 @@ const PostsController = {
   const post_id = req.body.post_id 
   const post = await Post.findById(post_id);
   post.likes += 1;
-  console.log(post_id);
   await post.save();
   // console.log(req)
   const token = await TokenGenerator.jsonwebtoken(req.user_id)
