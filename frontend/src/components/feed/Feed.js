@@ -36,6 +36,7 @@ const Feed = ({ navigate }) => {
       <div className="feed-container">
         <h2 className="feed-heading">Posts</h2>
         <div id='feed' role="feed">
+<<<<<<< HEAD
           {posts?.sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)).map(
             (post) => (
               <Post
@@ -46,6 +47,10 @@ const Feed = ({ navigate }) => {
                 }}
               />
             ),
+=======
+          {posts?.sort((a, b) => b.dateCreated - a.dateCreated).map(
+            (post) => ( <Post post={ post } key={ post._id } /> )
+>>>>>>> 5c74c57 (add test for createdDateworking)
           )}
         </div>
         <div className="button-container">
