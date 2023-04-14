@@ -25,7 +25,7 @@ const Feed = ({ navigate }) => {
     }
   }, [])
 
-  const createpost = () => {
+  async function createpost() {
     navigate('/createpost')
   }
 
@@ -36,9 +36,17 @@ const Feed = ({ navigate }) => {
         <div className="feed-container">
         <CreatePostForm navigate={ navigate } />
         <div id='feed' role="feed">
-        {posts?.filter(post => post.message !== "sadasd")
-                 .sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
-                 .map(post => <Post post={post} key={post._id} />)}
+          {posts?.sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)).map(
+            (post) => ( <Post post={ post } key={ post._id } /> )
+          )}
+        </div>
+        <div className="button-container">
+          <button className="logout-button" onClick={logout}>
+            Logout
+          </button>
+          <button className="create-post-button" onClick={createpost}>
+            Create Post
+          </button>
         </div>
       </div>
       </>
