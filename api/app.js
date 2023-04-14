@@ -15,7 +15,13 @@ app.use(express.json())
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, '../frontend/public/uploaded_photos')));
+
+const fs = require("fs");
+const UPLOADS_DIR = path.join(__dirname, "../frontend/public/uploaded_photos");
+if (!fs.existsSync(UPLOADS_DIR)) {
+  fs.mkdirSync(UPLOADS_DIR);
+}
 
 // middleware function to check for valid tokens
 const tokenChecker = (req, res, next) => {

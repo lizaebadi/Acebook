@@ -2,6 +2,7 @@ import React from "react";
 import LikeButton from "../likeButton/LikeButton";
 import './Post.css';
 
+<<<<<<< HEAD
 
 const formatDate = (timestamp) => {
   const date = new Date(timestamp);
@@ -12,14 +13,24 @@ const formatDate = (timestamp) => {
 
 const Post = ({ post }) => {
   const formattedDate = formatDate(post.dateCreated);
-  console.log(post);
+  console.log(post)
   return (
     <article className="post-box" data-cy="post" key={post._id}>
       <p id="message">{post.message} </p>
       <p id="date">{formattedDate}</p>
       <LikeButton post_like={post.likes} post_id={post._id} />
+      {post.photoUrl && <img src={post.photoUrl} alt="post" />}
     </article>
   );
 };
+=======
+const Post = ({post}) => {
+  return(
+    <article data-cy="post" key={ post._id }>{ post.message } { post.dateCreated }</article>
+  )
+}
+>>>>>>> 5c74c57 (add test for createdDateworking)
 
 export default Post;
+
+
