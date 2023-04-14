@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema({
   message: String,
-  dateCreated: { type: Number, default: () => Math.floor(Date.now() / 1000) },
+  dateCreated: {
+    type: Date,
+    default: () => Date.now()
+  },
   likes: {type: Number, min: 0, default: 0}
 });
 
