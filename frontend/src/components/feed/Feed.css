@@ -2,7 +2,7 @@
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
-  margin-top: 150px;
+  margin-top: 200px;
 }
 
 .form-container {
@@ -28,21 +28,40 @@
 
 .logout-button {
   margin-right: 10px;
-  background-color: #d9534f;
-  color: #fff;
+  color: #263849;
   border: none;
   padding: 8px 16px;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+  width: 120px;
 }
 
 .create-post-button {
-  background-color: #5cb85c;
-  color: #fff;
+  color: #263849;
   border: none;
-  padding: 8px 16px;
+  padding: 8px;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
+  width: 120px;
+}
+
+button {
+  color: #263849;
+  background-color: #35bcbf;
+  padding: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+  
+button:hover {
+  background-color: #90f6d7;
+  color: #263849;
 }

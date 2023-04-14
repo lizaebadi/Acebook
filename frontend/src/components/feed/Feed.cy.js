@@ -9,13 +9,8 @@ describe("Feed", () => {
       req.reply({
         statusCode: 200,
         body: { posts: [
-<<<<<<< HEAD
           {_id: 1, message: "Hello, world", dateCreated: "2023-04-10T12:30:00.000Z"},
           {_id: 2, message: "Hello again, world", dateCreated: "2023-04-11T09:45:00.000Z"}
-=======
-          {_id: 1, message: "Hello, world", dateCreated: 1620000000},
-          {_id: 2, message: "Hello again, world", dateCreated: 1621000000}
->>>>>>> 5c74c57 (add test for createdDateworking)
         ] }
       })
     }).as("getPosts");
@@ -26,19 +21,10 @@ describe("Feed", () => {
       cy.get('[data-cy="post"]')
         .should('have.length', 2)
         .then(($posts) => {
-<<<<<<< HEAD
           const dates = $posts.map((i, el) => Cypress.$(el).find('#date').text());
-=======
-          const dates = $posts.map((i, el) => Cypress.$(el).find('[data-cy="dateCreated"]').text());
->>>>>>> 5c74c57 (add test for createdDateworking)
           const sortedDates = [...dates].sort((a, b) => new Date(b) - new Date(a));
           expect(dates.get()).to.deep.equal(sortedDates);
         });
     });
   });
-<<<<<<< HEAD
 });
-=======
-});
-
->>>>>>> 5c74c57 (add test for createdDateworking)

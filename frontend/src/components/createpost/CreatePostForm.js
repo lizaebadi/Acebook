@@ -40,16 +40,24 @@ const CreatePostForm = ({ navigate }) => {
     setMessage(event.target.value)
   }
 
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   const handlePhoto = (event) => {
     setImage(event.target.files[0]);
   }
 
   return (
-    <form onSubmit={handleSubmit} encType='multipart/form-data'>
-      <input placeholder="Message" id="message" type='text' value={ message } onChange={handleMessageChange} />
-      <input id="image" name="image" accept= ".png, .jpg, .jpeg" type='file' onChange={handlePhoto} />
-      <input id='submit' type="submit" value="Submit" />
-    </form>
+    <>
+      <div className="add-message-form">
+        <form onSubmit={handleSubmit} enctype='multipart/form-data'>
+          <input placeholder="Message" id="message" type='text' value={ message } onChange={handleMessageChange} />
+          <input id="image" name="image" accept= ".png, .jpg, .jpeg" type='file' onChange={handlePhoto} />
+          <button id='submit' type="submit" value="Submit" onClick={ handleReload }>ADD POST</button>
+        </form>
+      </div>
+    </>
   );
 };
 

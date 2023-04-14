@@ -1,0 +1,21 @@
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-left: 150px;
+  padding-top: 200px;
+}
+
+.hero-image-container {
+  flex-basis: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 150px;
+}
+
+.hero-image-container img {
+  max-width: 50%;
+  max-height: auto;
+}

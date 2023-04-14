@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Post from '../post/Post';
+import NavBar from '../navbar/NavBar';
 import './Feed.css';
+import { useNavigate } from 'react-router';
+import CreatePostForm from '../createpost/CreatePostForm';
 
 const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
@@ -22,18 +25,20 @@ const Feed = ({ navigate }) => {
     }
   }, [])
 
-  const logout = () => {
-    window.localStorage.removeItem("token")
-    navigate('/login')
-  }
-
   async function createpost() {
     navigate('/createpost')
   }
 
-  if (token) {
+  async function logout() {
+    navigate('/');
+  }
+
+  if(token) {
     return (
-      <div className="feed-container">
+      <>
+      <NavBar navigate={ navigate } />
+        <div className="feed-container">
+        <CreatePostForm navigate={ navigate } />
         <h2 className="feed-heading">Posts</h2>
         <div id="feed" role="feed">
           {posts
@@ -57,9 +62,10 @@ const Feed = ({ navigate }) => {
           </button>
         </div>
       </div>
-    );
+      </>
+    )
   } else {
-    navigate("/signin");
+    navigate('/');
   }
 };
 
