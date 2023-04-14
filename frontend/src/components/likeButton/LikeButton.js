@@ -24,8 +24,8 @@ const LikeButton = (props) => {
   };
   
   return (
-    <div className = "like-button-container">
-      <FiHeart className ="like-button" onClick={handleClick} />
+    <div className = "like-button-container" onClick={handleClick}>
+      <FiHeart className ="like-button"  />
       <span className="like">Likes:{count}</span>
     </div>
   )

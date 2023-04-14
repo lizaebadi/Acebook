@@ -19,6 +19,7 @@ const NavBar = ({ navigate }) => {
         </div>
         <div data-cy="menu-container" className="menu-container">
           <ul>
+            <li><Link to="/profile">PROFILE</Link></li>
             <li><Link to="/posts">FEED</Link></li>
             <li><Link to="/signup">SIGN UP</Link></li>
             <li><Link to="/login">LOGIN</Link></li>

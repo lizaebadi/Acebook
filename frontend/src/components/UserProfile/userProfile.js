@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import RecentPosts from '../RecentPosts/RecentPosts';
 import UserInfo from '../UserInfo/UserInfo';
+import NavBar from '../navbar/NavBar';
+import { useNavigate } from 'react-router';
 import './UserProfile.css';
 
 const UserProfile = ({ navigate }) => {
@@ -81,11 +83,13 @@ const UserProfile = ({ navigate }) => {
 
   if(token) {
     return (
+      <>
+      <NavBar navigate={ navigate } />
       <div className='profile-container'>
-        <h1>Profile Page</h1>
         <UserInfo user={user} handleSubmit={handleSubmit} />
         <RecentPosts posts={posts} />
       </div>
+      </>
     )
   } else {
     navigate('/login')
