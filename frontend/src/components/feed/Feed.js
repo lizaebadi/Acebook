@@ -42,7 +42,7 @@ const Feed = ({ navigate }) => {
                 key={post._id}
                 post={{
                   ...post,
-                  photoUrl: post.photoUrl && `uploaded_photos/${post.photoUrl}`,
+                  photoUrl: post.photoUrl && `${post.photoUrl}`,
                 }}
               />
             ),

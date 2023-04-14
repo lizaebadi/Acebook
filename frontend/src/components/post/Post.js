@@ -12,14 +12,29 @@ const formatDate = (timestamp) => {
 
 const Post = ({ post }) => {
   const formattedDate = formatDate(post.dateCreated);
-  console.log(post);
+  console.log(post)
   return (
     <article className="post-box" data-cy="post" key={post._id}>
       <p id="message">{post.message} </p>
       <p id="date">{formattedDate}</p>
       <LikeButton post_like={post.likes} post_id={post._id} />
+      {post.photoUrl && <img src={post.photoUrl} alt="post" />}
     </article>
   );
 };
 
 export default Post;
+
+// import React from 'react';
+
+// const Post = ({ post }) => {
+//   return (
+//     <article data-cy="post" key={post._id}>
+//       {post.message && <p>{post.message}</p>}
+//       {post.photoUrl && <img src={post.photoUrl} alt="post" />}
+//     </article>
+//   );
+// };
+
+// export default Post;
+
