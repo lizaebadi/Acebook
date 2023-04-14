@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./LikeButton.css"; 
+import {FiHeart} from "react-icons/fi"
 
 const LikeButton = (props) => {
   const [count, setCount] = useState(props.post_like ?? 0);
@@ -14,10 +16,19 @@ const LikeButton = (props) => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({ post_id: props.post_id}),
+    }).then(response => {
+     return response.json()
+    }).then(data => {
+      setToken(data.token)
     });
   };
   
-  return <button className ="like-button"  onClick={handleClick}>Likes ({count})</button>;
+  return (
+    <div className = "like-button-container">
+      <FiHeart className ="like-button" onClick={handleClick} />
+      <span className="like">Likes:{count}</span>
+    </div>
+  )
 };
 
 export default LikeButton;

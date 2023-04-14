@@ -28,8 +28,8 @@ const PostsController = {
   console.log(post_id);
   await post.save();
   // console.log(req)
-  // const token = await TokenGenerator.jsonwebtoken(req.user_id)
-  res.status(201).json({ message: 'OK' });
+  const token = await TokenGenerator.jsonwebtoken(req.user_id)
+  res.status(201).json({ message: 'OK', token: token });
   }
 };
 
