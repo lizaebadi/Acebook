@@ -5,7 +5,8 @@ const PostSchema = new mongoose.Schema({
   dateCreated: {
     type: Date,
     default: () => Date.now()
-  }
+  },
+  likes: {type: Number, min: 0, default: 0}
 });
 
 const Post = mongoose.model("Post", PostSchema);
