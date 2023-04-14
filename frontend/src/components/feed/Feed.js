@@ -29,16 +29,29 @@ const Feed = ({ navigate }) => {
     navigate('/createpost')
   }
 
+  async function logout() {
+    navigate('/');
+  }
+
   if(token) {
     return (
       <>
       <NavBar navigate={ navigate } />
         <div className="feed-container">
         <CreatePostForm navigate={ navigate } />
-        <div id='feed' role="feed">
-          {posts?.sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)).map(
-            (post) => ( <Post post={ post } key={ post._id } /> )
-          )}
+        <h2 className="feed-heading">Posts</h2>
+        <div id="feed" role="feed">
+          {posts
+            ?.sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated))
+            .map((post) => (
+              <Post
+                key={post._id}
+                post={{
+                  ...post,
+                  photoUrl: post.photoUrl && `${post.photoUrl}`,
+                }}
+              />
+            ))}
         </div>
         <div className="button-container">
           <button className="logout-button" onClick={logout}>
@@ -52,8 +65,8 @@ const Feed = ({ navigate }) => {
       </>
     )
   } else {
-    navigate('/')
+    navigate('/');
   }
-}
+};
 
 export default Feed;
