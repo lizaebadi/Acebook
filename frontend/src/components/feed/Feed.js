@@ -37,7 +37,15 @@ const Feed = ({ navigate }) => {
         <h2 className="feed-heading">Posts</h2>
         <div id='feed' role="feed">
           {posts?.sort((a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)).map(
-            (post) => ( <Post post={ post } key={ post._id } /> )
+            (post) => (
+              <Post
+                key={post._id}
+                post={{
+                  ...post,
+                  photoUrl: post.photoUrl && `uploaded_photos/${post.photoUrl}`,
+                }}
+              />
+            ),
           )}
         </div>
         <div className="button-container">
